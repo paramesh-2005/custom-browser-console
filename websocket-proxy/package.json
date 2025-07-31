@@ -1,0 +1,25 @@
+{
+  "name": "websocket-tcp-proxy",
+  "version": "1.0.0",
+  "description": "WebSocket to TCP proxy for Custom Browser Console",
+  "main": "proxy.js",
+  "scripts": {
+    "start": "node proxy.js",
+    "dev": "nodemon proxy.js"
+  },
+  "keywords": [
+    "websocket",
+    "tcp",
+    "proxy",
+    "console"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
+
