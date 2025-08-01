@@ -1,29 +1,22 @@
+/* Remove conflicting background and styles */
 .App {
-  text-align: center;
-  min-height: 100vh;
-  background-color: #f5f5f5;
-  padding: 20px;
+  /* Remove these conflicting styles */
 }
 
-.App-header {
-  background-color: #282c34;
-  padding: 20px;
-  color: white;
-  margin-bottom: 20px;
-  border-radius: 8px;
-}
-
-.App-header h1 {
-  margin: 0 0 10px 0;
-}
-
-.App-header p {
-  margin: 0;
-  opacity: 0.8;
-}
-
+/* Keep only essential styles */
 main {
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Add any custom terminal styles if needed */
+.terminal-container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Ensure proper focus styles for terminal input */
+.terminal-input:focus {
+  outline: none;
+  border: none;
+}
