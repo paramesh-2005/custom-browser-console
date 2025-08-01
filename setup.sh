@@ -6,51 +6,51 @@ echo "🔌 Setting up Custom Browser Console..."
 
 # Check if Node.js is installed
 if ! command -v node &> /dev/null; then
-    echo "❌ Node.js is not installed. Please install Node.js first."
+    echo "Node.js is not installed. Please install Node.js first."
     exit 1
 fi
 
 # Check if npm is installed
 if ! command -v npm &> /dev/null; then
-    echo "❌ npm is not installed. Please install npm first."
+    echo "npm is not installed. Please install npm first."
     exit 1
 fi
 
-echo "✅ Node.js and npm are installed."
+echo "Node.js and npm are installed."
 
 # Install frontend dependencies
-echo "📦 Installing frontend dependencies..."
+echo "Installing frontend dependencies..."
 npm install
 
 if [ $? -eq 0 ]; then
-    echo "✅ Frontend dependencies installed successfully."
+    echo "Frontend dependencies installed successfully."
 else
-    echo "❌ Failed to install frontend dependencies."
+    echo "Failed to install frontend dependencies."
     exit 1
 fi
 
 # Create proxy directory
-echo "📁 Creating WebSocket proxy directory..."
+echo "Creating WebSocket proxy directory..."
 mkdir -p websocket-proxy
 cd websocket-proxy
 
 # Initialize proxy project
-echo "🔧 Initializing WebSocket proxy project..."
+echo "Initializing WebSocket proxy project..."
 npm init -y
 
 # Install proxy dependencies
-echo "📦 Installing proxy dependencies..."
+echo "Installing proxy dependencies..."
 npm install ws net
 
 if [ $? -eq 0 ]; then
-    echo "✅ Proxy dependencies installed successfully."
+    echo "Proxy dependencies installed successfully."
 else
-    echo "❌ Failed to install proxy dependencies."
+    echo "Failed to install proxy dependencies."
     exit 1
 fi
 
 # Create proxy.js file
-echo "📝 Creating proxy.js file..."
+echo "Creating proxy.js file..."
 cat > proxy.js << 'EOF'
 const WebSocket = require('ws');
 const net = require('net');
@@ -108,7 +108,7 @@ EOF
 
 cd ..
 
-echo "🎉 Setup completed successfully!"
+echo "Setup completed successfully!"
 echo ""
 echo "To run the project:"
 echo "1. Start the WebSocket proxy: cd websocket-proxy && node proxy.js"
