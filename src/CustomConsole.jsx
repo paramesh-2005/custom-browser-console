@@ -21,7 +21,7 @@ export default function CustomConsole() {
 
     socket.current.onopen = () => {
       setConnected(true);
-      term.current.writeln("\r\n✅ Connected to WebSocket Proxy");
+      term.current.writeln("\r\n Connected to WebSocket Proxy");
     };
 
     socket.current.onmessage = (e) => {
@@ -29,12 +29,12 @@ export default function CustomConsole() {
     };
 
     socket.current.onerror = (e) => {
-      term.current.writeln("\r\n❌ WebSocket Error");
+      term.current.writeln("\r\n WebSocket Error");
     };
 
     socket.current.onclose = () => {
       setConnected(false);
-      term.current.writeln("\r\n🔒 Connection closed");
+      term.current.writeln("\r\n Connection closed");
     };
 
     term.current.onData((data) => {
