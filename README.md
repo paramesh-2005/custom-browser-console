@@ -1,11 +1,11 @@
 # Custom Browser Console using TCP Web Clients
 
-## 🎯 Objective
+##  Objective
 To develop a browser-based console that enables real-time communication with backend systems via TCP using a WebSocket-to-TCP proxy. This console provides a terminal-like interface within the browser, tailored for developers, admins, or network operators.
 
 
 
-## 👥 Target Audience
+##  Target Audience
 - DevOps engineers and system administrators
 - Network engineers and penetration testers
 - Developers managing TCP services
@@ -13,7 +13,7 @@ To develop a browser-based console that enables real-time communication with bac
 
 
 
-## 🌐 System Architecture
+##  System Architecture
 
 ```
 +---------------------+      WebSocket      +---------------------+     TCP/IP     +------------------------+
@@ -28,7 +28,7 @@ To develop a browser-based console that enables real-time communication with bac
 
 
 
-## 🧱 Components and Modules
+##  Components and Modules
 
 ### A. Frontend (Browser)
 - **xterm.js**: Terminal emulation
@@ -56,7 +56,7 @@ To develop a browser-based console that enables real-time communication with bac
 
 
 
-## 🔐 Security Considerations
+##  Security Considerations
 - WebSocket authentication (JWT or session tokens)
 - CORS enforcement on WebSocket proxy
 - TLS encryption between browser ↔ proxy
@@ -65,7 +65,7 @@ To develop a browser-based console that enables real-time communication with bac
 
 
 
-## ⚙️ Technologies Used
+##  Technologies Used
 
 | Layer           | Technology               |
 |-----------------|--------------------------|
@@ -77,7 +77,7 @@ To develop a browser-based console that enables real-time communication with bac
 
 
 
-## 📈 Performance Enhancements
+##  Performance Enhancements
 - Stream buffering for large data over TCP
 - Connection pooling and reuse
 - Message batching and compression
@@ -85,7 +85,7 @@ To develop a browser-based console that enables real-time communication with bac
 
 
 
-## 🔄 Data Flow
+##  Data Flow
 - User opens browser console and connects to the proxy
 - WebSocket session opens and initiates a TCP connection
 - Commands entered in terminal → JSON frame → WebSocket
@@ -94,7 +94,7 @@ To develop a browser-based console that enables real-time communication with bac
 
 
 
-## 🧪 Testing Plan
+##  Testing Plan
 - Simulate TCP servers using netcat
 - Use Wireshark to monitor frame translation
 - Unit tests for proxy (e.g., broken pipes, reconnections)
@@ -102,7 +102,7 @@ To develop a browser-based console that enables real-time communication with bac
 
 
 
-## 🔚 Future Enhancements
+##  Future Enhancements
 - Multi-tab TCP sessions
 - SFTP-like file browsing over TCP
 - Logs archive/download
@@ -110,7 +110,7 @@ To develop a browser-based console that enables real-time communication with bac
 
 
 
-## 🚀 How to Use It
+##  How to Use It
 
 ### Frontend Setup
 
@@ -227,7 +227,7 @@ Now, when you type in the browser console, the data will go through the WebSocke
 
 
 
-## 🐳 Docker Deployment
+##  Docker Deployment
 
 ### Using Docker Compose (Recommended)
 
@@ -262,7 +262,7 @@ docker run -p 8080:8080 websocket-tcp-proxy
 ```
 
 
-## 📋 Prerequisites
+##  Prerequisites
 
 ### For Local Development
 - **Node.js** (version 16 or higher)
@@ -279,7 +279,7 @@ docker run -p 8080:8080 websocket-tcp-proxy
   - Windows: Use WSL or install via package manager
 
 
-## ⚡ Quick Start
+##  Quick Start
 
 ### Option 1: Automated Setup (Recommended)
 ```bash
@@ -324,7 +324,7 @@ netcat -l -p 9000
 ```
 
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 
@@ -372,7 +372,7 @@ wscat -c ws://localhost:8080
 ```
 
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 custom-browser-console/
@@ -399,7 +399,7 @@ custom-browser-console/
 ```
 
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -407,11 +407,11 @@ custom-browser-console/
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - [xterm.js](https://xtermjs.org/) for the terminal emulation
 - [React](https://reactjs.org/) for the frontend framework
@@ -420,5 +420,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-**Happy coding! 🚀**
+**Happy coding!**
 
