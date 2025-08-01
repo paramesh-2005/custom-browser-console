@@ -10,12 +10,12 @@ const wss = new WebSocket.Server({
     host: '0.0.0.0' // Listen on all interfaces for deployment
 });
 
-console.log(`🔌 WebSocket proxy server started on ws://0.0.0.0:${WS_PORT}`);
-console.log(`🎯 Default TCP target: ${TCP_HOST}:${TCP_PORT}`);
+console.log(` WebSocket proxy server started on ws://0.0.0.0:${WS_PORT}`);
+console.log(` Default TCP target: ${TCP_HOST}:${TCP_PORT}`);
 
 wss.on('connection', (ws, req) => {
     const clientIP = req.socket.remoteAddress;
-    console.log(`📱 WebSocket client connected from ${clientIP}`);
+    console.log(` WebSocket client connected from ${clientIP}`);
 
     let tcpSocket = null;
     let isConnected = false;
@@ -26,8 +26,8 @@ wss.on('connection', (ws, req) => {
         
         tcpSocket.connect(port, host, () => {
             isConnected = true;
-            console.log(`✅ Connected to TCP server: ${host}:${port}`);
-            ws.send(`✅ Connected to TCP server: ${host}:${port}\r\n`);
+            console.log(` Connected to TCP server: ${host}:${port}`);
+            ws.send(` Connected to TCP server: ${host}:${port}\r\n`);
         });
 
         tcpSocket.on('data', data => {
@@ -38,25 +38,25 @@ wss.on('connection', (ws, req) => {
 
         tcpSocket.on('close', () => {
             isConnected = false;
-            console.log('🔒 TCP connection closed');
+            console.log(' TCP connection closed');
             if (ws.readyState === WebSocket.OPEN) {
-                ws.send('🔒 TCP connection closed\r\n');
+                ws.send(' TCP connection closed\r\n');
             }
         });
 
         tcpSocket.on('error', err => {
             isConnected = false;
-            console.error('❌ TCP Error:', err.message);
+            console.error(' TCP Error:', err.message);
             if (ws.readyState === WebSocket.OPEN) {
-                ws.send(`❌ TCP Error: ${err.message}\r\n`);
+                ws.send(` TCP Error: ${err.message}\r\n`);
             }
         });
 
         tcpSocket.on('timeout', () => {
             isConnected = false;
-            console.log('⏰ TCP connection timeout');
+            console.log(' TCP connection timeout');
             if (ws.readyState === WebSocket.OPEN) {
-                ws.send('⏰ TCP connection timeout\r\n');
+                ws.send(' TCP connection timeout\r\n');
             }
             tcpSocket.destroy();
         });
@@ -67,7 +67,7 @@ wss.on('connection', (ws, req) => {
 
     ws.on('message', message => {
         const messageStr = message.toString();
-        console.log('📨 Received from WebSocket:', messageStr.trim());
+        console.log(' Received from WebSocket:', messageStr.trim());
 
         // Check for special commands
         if (messageStr.startsWith('/connect ')) {
@@ -80,11 +80,11 @@ wss.on('connection', (ws, req) => {
                     tcpSocket.destroy();
                 }
                 
-                ws.send(`🔄 Connecting to ${newHost}:${newPort}...\r\n`);
+                ws.send(` Connecting to ${newHost}:${newPort}...\r\n`);
                 connectToTCP(newHost, newPort);
                 return;
             } else {
-                ws.send('❌ Usage: /connect <host> <port>\r\n');
+                ws.send(' Usage: /connect <host> <port>\r\n');
                 return;
             }
         }
@@ -98,13 +98,13 @@ wss.on('connection', (ws, req) => {
         }
 
         if (messageStr.startsWith('/status')) {
-            const status = isConnected ? '✅ Connected' : '❌ Disconnected';
-            ws.send(`📊 Status: ${status}\r\n`);
+            const status = isConnected ? 'Connected' : 'Disconnected';
+            ws.send(`Status: ${status}\r\n`);
             return;
         }
 
         if (messageStr.startsWith('/help')) {
-            ws.send('📋 Available commands:\r\n');
+            ws.send(' Available commands:\r\n');
             ws.send('  /connect <host> <port> - Connect to TCP server\r\n');
             ws.send('  /disconnect - Disconnect from TCP server\r\n');
             ws.send('  /status - Show connection status\r\n');
@@ -116,7 +116,7 @@ wss.on('connection', (ws, req) => {
         if (isConnected && tcpSocket && tcpSocket.readyState === 'open') {
             tcpSocket.write(messageStr);
         } else {
-            ws.send('❌ Not connected to TCP server. Use /connect <host> <port>\r\n');
+            ws.send('Not connected to TCP server. Use /connect <host> <port>\r\n');
         }
     });
 
@@ -128,35 +128,35 @@ wss.on('connection', (ws, req) => {
     });
 
     ws.on('error', err => {
-        console.error('❌ WebSocket Error:', err.message);
+        console.error('WebSocket Error:', err.message);
         if (tcpSocket) {
             tcpSocket.destroy();
         }
     });
 
     // Send welcome message
-    ws.send('🔌 Custom Browser Console - WebSocket Proxy\r\n');
-    ws.send('📋 Type /help for available commands\r\n');
+    ws.send('Custom Browser Console - WebSocket Proxy\r\n');
+    ws.send('Type /help for available commands\r\n');
 });
 
 // Handle server errors
 wss.on('error', err => {
-    console.error('❌ WebSocket Server Error:', err.message);
+    console.error('WebSocket Server Error:', err.message);
 });
 
 // Graceful shutdown
 process.on('SIGINT', () => {
-    console.log('\n🛑 Shutting down WebSocket proxy server...');
+    console.log('\nShutting down WebSocket proxy server...');
     wss.close(() => {
-        console.log('✅ Server closed');
+        console.log('Server closed');
         process.exit(0);
     });
 });
 
 process.on('SIGTERM', () => {
-    console.log('\n🛑 Received SIGTERM, shutting down...');
+    console.log('\nReceived SIGTERM, shutting down...');
     wss.close(() => {
-        console.log('✅ Server closed');
+        console.log('Server closed');
         process.exit(0);
     });
 });
